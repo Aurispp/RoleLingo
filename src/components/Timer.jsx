@@ -8,12 +8,12 @@ const Timer = ({ initialSeconds, onComplete }) => {
 
   useEffect(() => {
     setTimeout(() => setIsVisible(true), 100);
-    
+
     let interval = null;
 
     if (isActive && seconds > 0) {
       interval = setInterval(() => {
-        setSeconds(seconds => {
+        setSeconds((seconds) => {
           // Start very slight fade at 3 seconds
           if (seconds === 4) {
             setFadeLevel(0.2);
@@ -30,7 +30,7 @@ const Timer = ({ initialSeconds, onComplete }) => {
           if (seconds === 1) {
             setFadeLevel(0.8);
           }
-          
+
           if (seconds <= 1) {
             clearInterval(interval);
             setIsActive(false);
@@ -61,15 +61,13 @@ const Timer = ({ initialSeconds, onComplete }) => {
   };
 
   return (
-    <div 
+    <div
       className="transition-all duration-1000 ease-in-out"
-      style={{ 
+      style={{
         opacity: isVisible ? 1 - fadeLevel : 0,
       }}
     >
-      <div className="text-6xl font-bold text-[#4169e1]">
-        {formatTime(seconds)}
-      </div>
+      <div className="text-6xl font-bold text-[#4169e1]">{formatTime(seconds)}</div>
     </div>
   );
 };

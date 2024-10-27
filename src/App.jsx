@@ -9,7 +9,7 @@ export default function App() {
   const [timerState, setTimerState] = useState('prep'); // prep, transition, conversation, ended
   const [currentScenario, setCurrentScenario] = useState(null);
   const [gameKey, setGameKey] = useState(0);
-  
+
   const handleInputChange = (e) => {
     const value = Math.min(Math.max(1, e.target.value), 60);
     setMinutes(value);
@@ -18,7 +18,7 @@ export default function App() {
   const startGame = () => {
     setGameState('prep');
     setTimerState('prep');
-    setGameKey(prev => prev + 1);
+    setGameKey((prev) => prev + 1);
   };
 
   const handlePrepTimeComplete = () => {
@@ -44,7 +44,7 @@ export default function App() {
     setGameState('setup');
     setTimerState('prep');
     setCurrentScenario(null);
-    setGameKey(prev => prev + 1);
+    setGameKey((prev) => prev + 1);
   };
 
   const handleScenarioUpdate = (scenario) => {
@@ -56,10 +56,8 @@ export default function App() {
       <div className="w-full max-w-6xl mx-auto">
         {gameState === 'setup' && (
           <div className="flex flex-col items-center gap-8 p-8">
-            <h1 className="text-4xl font-bold text-gray-800 text-center">
-              Ready to TalkTango?
-            </h1>
-            
+            <h1 className="text-4xl font-bold text-gray-800 text-center">Ready to TalkTango?</h1>
+
             <div className="flex flex-col items-center gap-6">
               <div className="flex items-center gap-2">
                 <input
@@ -95,8 +93,8 @@ export default function App() {
           <div className="w-full p-4">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="w-full md:w-1/3">
-                <RoleCard 
-                  activePlayer={1} 
+                <RoleCard
+                  activePlayer={1}
                   onScenarioChange={handleScenarioUpdate}
                   gameKey={gameKey}
                 />
@@ -108,25 +106,27 @@ export default function App() {
                     <h2 className="text-3xl font-bold text-gray-800 text-center w-full">
                       {currentScenario?.theme || 'Loading...'}
                     </h2>
-                    
+
                     {timerState === 'prep' && (
                       <div className="flex flex-col items-center space-y-2">
-                        <Timer 
+                        <Timer
                           key="prep-timer"
-                          initialSeconds={20} 
+                          initialSeconds={20}
                           onComplete={handlePrepTimeComplete}
                         />
-                        <p className={`
+                        <p
+                          className={`
                           text-gray-600 transition-all duration-500
                           ${timerState === 'prep' ? 'opacity-100' : 'opacity-0'}
-                        `}>
+                        `}
+                        >
                           Preparation Time
                         </p>
                       </div>
                     )}
-                    
+
                     {timerState === 'transition' && (
-                      <div 
+                      <div
                         className={`
                           transition-all duration-1000 ease-in-out
                           ${timerState === 'transition' ? 'opacity-100' : 'opacity-0'}
@@ -137,25 +137,21 @@ export default function App() {
                         </div>
                       </div>
                     )}
-                    
+
                     {timerState === 'conversation' && (
                       <div className="flex flex-col items-center space-y-2 transition-opacity duration-500">
-                        <Timer 
+                        <Timer
                           key="conversation-timer"
-                          initialSeconds={minutes * 60} 
+                          initialSeconds={minutes * 60}
                           onComplete={handleConversationTimeComplete}
                         />
-                        <p className="text-gray-600">
-                          Tango Time
-                        </p>
+                        <p className="text-gray-600">Tango Time</p>
                       </div>
                     )}
 
                     {timerState === 'ended' && (
                       <div className="transition-all duration-1000 ease-in-out opacity-0 animate-fade-in">
-                        <div className="text-6xl font-bold text-[#4169e1]">
-                          0:00
-                        </div>
+                        <div className="text-6xl font-bold text-[#4169e1]">0:00</div>
                         <p className="text-gray-600 mt-2">Time's Up!</p>
                       </div>
                     )}
@@ -175,7 +171,7 @@ export default function App() {
               </div>
 
               <div className="w-full md:w-1/3">
-                <RoleCard 
+                <RoleCard
                   activePlayer={2}
                   onScenarioChange={handleScenarioUpdate}
                   gameKey={gameKey}
