@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserCircle2 } from 'lucide-react';
 
 const scenarios = [
@@ -78,29 +78,26 @@ const scenarios = [
 let sharedScenario = null;
 
 const RoleCard = ({ activePlayer = 1, onScenarioChange, gameKey }) => {
+  const [scenario, setScenario] = useState(null);
+
   useEffect(() => {
-    if (activePlayer === 1 && !sharedScenario) {
-      // Only select new scenario if there isn't one already
+    if (activePlayer === 1) {
+      // Only player 1 selects a new scenario
       const newScenario = scenarios[Math.floor(Math.random() * scenarios.length)];
       sharedScenario = newScenario;
+      setScenario(newScenario);
       if (onScenarioChange) {
         onScenarioChange(newScenario);
       }
+    } else {
+      // Player 2 uses the scenario selected by player 1
+      setScenario(sharedScenario);
     }
   }, [gameKey, activePlayer, onScenarioChange]);
 
-  // Clear shared scenario when returning to menu
-  useEffect(() => {
-    return () => {
-      if (activePlayer === 1) {
-        sharedScenario = null;
-      }
-    };
-  }, [activePlayer]);
+  if (!scenario) return null;
 
-  if (!sharedScenario) return null;
-
-  const playerRole = sharedScenario.roles[activePlayer - 1];
+  const playerRole = scenario.roles[activePlayer - 1];
 
   return (
     <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 space-y-4">
