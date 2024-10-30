@@ -9,6 +9,7 @@ export default function App() {
   const [timerState, setTimerState] = useState('prep'); // prep, transition, conversation, ended
   const [currentScenario, setCurrentScenario] = useState(null);
   const [gameKey, setGameKey] = useState(0);
+  const [difficulty, setDifficulty] = useState('Medium');
 
   const handleInputChange = (e) => {
     const value = Math.min(Math.max(1, e.target.value), 60);
@@ -57,7 +58,21 @@ export default function App() {
         {gameState === 'setup' && (
           <div className="flex flex-col items-center gap-8 p-8">
             <h1 className="text-4xl font-bold text-gray-800 text-center">Ready to TalkTango?</h1>
-
+            <div className="flex gap-4 mb-4">
+  {['easy', 'medium', 'hard'].map((level) => (
+    <button
+      key={level}
+      onClick={() => setDifficulty(level)}
+      className={`px-4 py-2 rounded-lg capitalize
+        ${difficulty === level 
+          ? 'bg-[#4169e1] text-white' 
+          : 'bg-gray-200 text-gray-700'
+        }`}
+    >
+      {level}
+    </button>
+              ))}
+            </div>
             <div className="flex flex-col items-center gap-6">
               <div className="flex items-center gap-2">
                 <input
@@ -97,6 +112,7 @@ export default function App() {
                   activePlayer={1}
                   onScenarioChange={handleScenarioUpdate}
                   gameKey={gameKey}
+                  difficulty={difficulty.toLowerCase()}
                 />
               </div>
 
@@ -175,6 +191,7 @@ export default function App() {
                   activePlayer={2}
                   onScenarioChange={handleScenarioUpdate}
                   gameKey={gameKey}
+                  difficulty={difficulty.toLowerCase()}
                 />
               </div>
             </div>
