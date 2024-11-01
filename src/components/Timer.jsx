@@ -60,14 +60,23 @@ const Timer = ({ initialSeconds, onComplete }) => {
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
+  const toggleTimer = () => {
+    setIsActive(!isActive);
+  }
   return (
-    <div
-      className="transition-all duration-1000 ease-in-out"
-      style={{
-        opacity: isVisible ? 1 - fadeLevel : 0,
-      }}
-    >
+    <div className="transition-all duration-1000 ease-in-out flex flex-col items-center"
+         style={{
+           opacity: isVisible ? 1 - fadeLevel : 0,
+         }}>
       <div className="text-6xl font-bold text-[#4169e1]">{formatTime(seconds)}</div>
+      {seconds <= 20 && (
+        <button 
+          onClick={toggleTimer}
+          className="mt-4"
+        >
+          {isActive ? 'Help' : 'Resume'}
+        </button>
+      )}
     </div>
   );
 };

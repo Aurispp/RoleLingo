@@ -52,15 +52,15 @@ const scenarios = {
     },
     {
       id: 2,
-      theme: 'RESTAURANT MIX-UP',
+      theme: 'FLIGHT DELAY DRAMA',
       roles: [
         {
-          title: 'Customer',
-          description: "You got chicken instead of your vegetarian meal. Explain politely but you're in a hurry.",
+          title: 'Frustrated Passenger',
+          description: "Your connecting flight is delayed by 3 hours and you'll miss an important meeting. Ask about alternatives and compensation.",
         },
         {
-          title: 'Waiter',
-          description: "You're the waiter. Kitchen is very busy but try to solve the problem quickly.",
+          title: 'Gate Agent',
+          description: "Bad weather is affecting multiple flights. Try to help the passenger while managing a crowded gate of anxious travelers.",
         },
       ],
     },
