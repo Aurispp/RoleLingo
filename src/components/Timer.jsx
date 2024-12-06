@@ -74,7 +74,7 @@ const Timer = ({ initialSeconds, onComplete }) => {
           onClick={toggleTimer}
           className="mt-4"
         >
-          {isActive ? 'Help' : 'Resume'}
+          {isActive ? 'Help?' : 'Resume'}
         </button>
       )}
     </div>
