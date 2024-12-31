@@ -1,8 +1,9 @@
-# React + Vite
+RoleLingo helps users practice real-world conversations through structured role-play scenarios. Perfect for language learners, interview prep, or anyone looking to improve their communication skills.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🎭 Multiple difficulty levels
+🗣️ Two-player interactive mode
+⏱️ Integrated practice timer
+🎯 Diverse real-world scenarios
+💻 Modern React + Vite application
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Try it out: https://aurispp.github.io/rolelingo/
